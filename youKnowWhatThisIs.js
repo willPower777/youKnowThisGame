@@ -135,9 +135,9 @@ function mainMind(){
 				console.log(winConditionClean+" just before reenter of new code")
 				var playersTurnClean = checkCodeCondition(playersGuess);
 				console.log(playersTurnClean+" now this is the players entryCleaned");
-				console.log(t +"this is t");
+				console.log(t +"this is t turn");
 				previousGuesses.push(playersTurnClean+"\n");
-				// console.log(winConditionClean+" pre if winning statementClean");
+				console.log(winConditionClean+" winning statementClean");
 				// console.log(playersTurnClean+" now this is the players entry after the push");
 				// alert("this the win condition "+winConditionClean+"\nthis the play turn "+playersTurnClean);
 				if ((winConditionClean[0] == playersTurnClean[0])&&(winConditionClean[1] == playersTurnClean[1])&&
@@ -158,25 +158,27 @@ function mainMind(){
 					var inPlaceLetter=0;
 					var rightLetter=0;
 					var winConditionPluck=winConditionClean;
+					console.log(winConditionClean+" Clean right after dec of winConditionPluck");
 					var playersTurnPluck=playersTurnClean;
 					for(i=0; i<playersTurnClean.length; i++){
 						if (playersTurnClean[i]==winConditionClean[i]){
 							inPlaceLetter++;
-							var winConditionPulled=winConditionPluck.splice(winConditionPluck.indexOf(playersTurnClean[j]),1);
-							var playersTurnPulled=playersTurnPluck.splice(playersTurnPluck.indexOf(winConditionClean[j]),1);
+							var winConditionPulled=winConditionPluck.splice(winConditionPluck.indexOf(playersTurnClean[i]),1);
+							var playersTurnPulled=playersTurnPluck.splice(playersTurnPluck.indexOf(winConditionClean[i]),1);
+							console.log(winConditionClean +" Clean right after the splice");
 						} 
 					}
 					//---NEED To figure out below how to get to check against all in an array. line 149
 					//--added winConditionPluck to be able to pull a checked value out of the array to not doublecheck
 					for(j=0; j<playersTurnPluck.length; j++){
 						// console.log(playersTurnClean[i]);
-						console.log(winConditionPluck+" this is pluck total");
-						console.log(winConditionPluck[j]+" this is pluck single "+j+" time through this player guess: " +playersTurnClean[j]);
-						console.log(winConditionPluck.indexOf(playersTurnClean[j])+" That is indexOf pluck array based on players guess letter");
+						// console.log(winConditionPluck+" this is pluck total");
+						// console.log(winConditionPluck[j]+" this is pluck single "+j+" time through this player guess: " +playersTurnClean[j]);
+						// console.log(winConditionPluck.indexOf(playersTurnClean[j])+" That is indexOf pluck array based on players guess letter");
 						if ((playersTurnPluck[j]!=winConditionPluck[j]) && 
 							(winConditionPluck.indexOf(playersTurnPluck[j])!=-1)){
 							rightLetter++;
-							console.log(rightLetter +" this time"+j)
+							// console.log(rightLetter +" this time"+j)
 							var winConditionPulled2=winConditionPluck.splice(winConditionPluck.indexOf(playersTurnPluck[j]),1);
 						}
 					}
