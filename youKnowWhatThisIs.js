@@ -157,24 +157,27 @@ function mainMind(){
 				} else {
 					var inPlaceLetter=0;
 					var rightLetter=0;
+					var winConditionPluck=winConditionClean;
+					var playersTurnPluck=playersTurnClean;
 					for(i=0; i<playersTurnClean.length; i++){
 						if (playersTurnClean[i]==winConditionClean[i]){
 							inPlaceLetter++;
+							var winConditionPulled=winConditionPluck.splice(winConditionPluck.indexOf(playersTurnClean[j]),1);
+							var playersTurnPulled=playersTurnPluck.splice(playersTurnPluck.indexOf(winConditionClean[j]),1);
 						} 
 					}
 					//---NEED To figure out below how to get to check against all in an array. line 149
 					//--added winConditionPluck to be able to pull a checked value out of the array to not doublecheck
-					var winConditionPluck=winConditionClean;
-					for(j=0; j<playersTurnClean.length; j++){
+					for(j=0; j<playersTurnPluck.length; j++){
 						// console.log(playersTurnClean[i]);
 						console.log(winConditionPluck+" this is pluck total");
 						console.log(winConditionPluck[j]+" this is pluck single "+j+" time through this player guess: " +playersTurnClean[j]);
 						console.log(winConditionPluck.indexOf(playersTurnClean[j])+" That is indexOf pluck array based on players guess letter");
-						if ((playersTurnClean[j]!=winConditionClean[j]) && 
-							(winConditionPluck.indexOf(playersTurnClean[j])!=-1)){
+						if ((playersTurnPluck[j]!=winConditionPluck[j]) && 
+							(winConditionPluck.indexOf(playersTurnPluck[j])!=-1)){
 							rightLetter++;
 							console.log(rightLetter +" this time"+j)
-							var winConditionPulled=winConditionPluck.splice(winConditionPluck.indexOf(playersTurnClean[j]),1);
+							var winConditionPulled2=winConditionPluck.splice(winConditionPluck.indexOf(playersTurnPluck[j]),1);
 						}
 					}
 					playersGuess=window.prompt("Okay you didn't get it with that last guess.\n"+
