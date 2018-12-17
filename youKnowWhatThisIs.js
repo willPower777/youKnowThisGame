@@ -11,10 +11,10 @@ var gameplayRules1 = function(){return window.confirm("Alright, your friend "+ n
 	"(AAFF) (ABCD) (EAAE) (DCBA)\n Once they enter the code, you will have 12 attempts to\n"+
 	"figure it out! Do you get it so far?");};
 var gameplayRules2 = function(){return window.confirm("Okay so once the code is entered I will give you feedback on your attempts!\n"+
-	"   For instance if the winning code is (AADD) and you entered (DACC)\n I will say 'you have 1 correct placement' and"+
-	"'separately you have 1 correct letter.'\n   Keep in mind placement will imply correct letter. Just 'letter' means not\n"+
+	"   For instance if the winning code is (AADD) and you entered (DACC)\n   I will say 'you have 1 correct placement'(CP) and "+
+	"'separately you have 1 correct letter.'(CL)\n   Keep in mind placement will imply correct letter. Just 'letter' means not "+
 	"the right placement but a correct letter in the code. But you are on the right track.\n\n Do you understand?");};
-var winCondition = function(){return window.prompt("Alright friend what is your code? Please keep it to 4 letters.\n"+
+var winCondition = function(){return window.prompt("Alright "+ nemesis + " what is your code? Please keep it to 4 letters.\n"+
 	"Between A-F. -Or you'll be hearing from me again.");};
 var playersTurn = function(){return window.prompt("So, "+playerName+" what is your first guess? Remember:\n"+
 	"Exactly 4 Letters please between A-F, any order. GOOD LUCK!");};
@@ -95,7 +95,7 @@ function mainMind(){
 		return;
 	} else if (answer1 == true){
 		//start of the game with entry info
-		alert("Alright then let's start!");
+		alert("Alrighty then; let's start!");
 		playerName = contestantName();
 		// console.log(playerName + typeof playerName);
 		while (playerName.match(/\d+/g) != null ){
@@ -130,7 +130,7 @@ function mainMind(){
 		//above call may be redundant. May just need below line. And or it needs to be assigned a variable?
 		winConditionClean = checkCodeCondition(winningCode);
 		// console.log(winConditionClean+" postClean");
-		alert("Now it's time for the player to guess. You have at most 12 chances.");
+		alert("Now it's time for the " +playerName+ " to guess. You have up to 12 chances.");
 		var playersGuess = playersTurn();
 		// console.log(winConditionClean+" right after playersGuess happens")
 		//previous calls the variable out and player enters. Line below should clean it up like the other.
@@ -188,12 +188,12 @@ function mainMind(){
 							// console.log(winConditionPluck+ " winPluck right after the second splice");
 						}
 					}
-					previousGuesses.push(t+". "+playersTurnClean+" with "+inPlaceLetter+" correct placement and separately "+
-						rightLetter + " right letter(s) not spot.\n");
+					previousGuesses.push(t+". "+playersTurnClean+" with "+inPlaceLetter+" CP and separately "+
+						rightLetter + " CL(s) not right location.\n");
 					newPreviousGuesses=previousGuesses.join("");
 					playersGuess=window.prompt("Okay you didn't get it with that last guess.\n"+
-						"You have "+inPlaceLetter+" correct letter(s) in the right placement!!\n"+
-						"You got separately "+rightLetter+" letter(s) in the code but not in the right spot.\n"+
+						"You have "+inPlaceLetter+" correct letter(s) in the right placement(CP)!!\n"+
+						"You got separately "+rightLetter+" letter(CL)s in the code but not in the right spot.\n"+
 						"Your previous guesses were: \n"+ newPreviousGuesses+ "  \nNow you should try again!"+
 						" You have " +(12-t)+ " tries left!");
 				}
