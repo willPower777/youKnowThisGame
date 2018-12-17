@@ -90,7 +90,7 @@ var checkCodeCondition = function(enteredCode){
 };
 //-Below will be the random code generator
 var randomCode = function(){
-	var = randoArray = [];
+	var randoArray = [];
 	for (i=1;i<=4;i++){
 		var randoNum = Math.round((Math.random()*5)+1),
 				letterSub,
@@ -98,8 +98,8 @@ var randomCode = function(){
 		if (randoNum == 1){
 			letterSub=A;}else if (randoNum == 2){
 				letterSub=B;}else if (randoNum == 3){
-					letterSub=C;}else if (random == 4){
-						letterSub=D;}else if (random == 5){
+					letterSub=C;}else if (randoNum == 4){
+						letterSub=D;}else if (randoNum == 5){
 							letterSub=E;}else {
 								letterSub=F;}
 		randoArray.push(letterSub);
@@ -147,9 +147,8 @@ function mainMind(){
 				alert("Alrighty then; on with the game!");
 			};
 			var winningCode = winCondition();
-		} else {
-			var winningCode = randomCode();
 		}
+		//TODO Right AROUND HERE TO figure out solo end STUFF
 		// console.log(winningCode+" preClean");
 		//above call may be redundant. May just need below line. And or it needs to be assigned a variable?
 		winConditionClean = checkCodeCondition(winningCode);
