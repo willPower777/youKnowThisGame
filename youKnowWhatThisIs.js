@@ -87,6 +87,21 @@ var checkCodeCondition = function(enteredCode){
 	// console.log(codeArrayReturn+" makin sure it returns something")
 	return codeArrayReturn;
 };
+//-Below will be the random code generator
+var randomCode = function(){
+	for (i=1;i<=4;i++){
+		var randoNum = math.round(math.random()*5+1),
+				letterSub;
+		if (randoNum == 1){
+			letterSub=A;}else if (randoNum == 2){
+				letterSub=B;}else if (randoNum == 3){
+					letterSub=C;}else if (random == 4){
+						letterSub=D;}else if (random == 5){
+							letterSub=E;}else {
+								letterSub=F;}
+		randoArray.push(letterSub);
+	}
+};
 
 function mainMind(){
 	var answer1 = startInfo();
