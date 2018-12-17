@@ -3,7 +3,7 @@
 var startInfo = function(){return window.confirm("Jim, you are about to play a game of You know What!\n"+
 	"Do you accept?");};
 var contestantName = function(){return window.prompt("What is your name valiant player? -Incase you aren't Jim");};
-var soloGame = function(){return window.confirm(playerName+" would you like to play solo? If you have a friend, select 'N'.")}
+var soloGame = function(){return window.confirm(playerName+" would you like to play solo? If you have a friend, select 'Cancel'.")}
 var readyFriend = function(){return window.confirm("Have you asked someone nicely?");};
 var friendName = function(){return window.prompt("What is your friend's name? Please enter now.\n"+
 	"(And PLEASE put in a regular name.)");};
@@ -90,9 +90,11 @@ var checkCodeCondition = function(enteredCode){
 };
 //-Below will be the random code generator
 var randomCode = function(){
+	var = randoArray = [];
 	for (i=1;i<=4;i++){
 		var randoNum = Math.round((Math.random()*5)+1),
-				letterSub;
+				letterSub,
+				A,B,C,D,E,F;
 		if (randoNum == 1){
 			letterSub=A;}else if (randoNum == 2){
 				letterSub=B;}else if (randoNum == 3){
@@ -102,6 +104,7 @@ var randomCode = function(){
 								letterSub=F;}
 		randoArray.push(letterSub);
 	}
+	return randoArray;
 };
 
 function mainMind(){
