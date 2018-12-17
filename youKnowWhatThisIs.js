@@ -3,6 +3,7 @@
 var startInfo = function(){return window.confirm("Jim, you are about to play a game of You know What!\n"+
 	"Do you accept?");};
 var contestantName = function(){return window.prompt("What is your name valiant player? -Incase you aren't Jim");};
+var soloGame = function(){return window.confirm(playerName+" would you like to play solo? If you have a friend, select 'N'.")}
 var readyFriend = function(){return window.confirm("Have you asked someone nicely?");};
 var friendName = function(){return window.prompt("What is your friend's name? Please enter now.\n"+
 	"(And PLEASE put in a regular name.)");};
@@ -90,7 +91,7 @@ var checkCodeCondition = function(enteredCode){
 //-Below will be the random code generator
 var randomCode = function(){
 	for (i=1;i<=4;i++){
-		var randoNum = math.round(math.random()*5+1),
+		var randoNum = Math.round((Math.random()*5)+1),
 				letterSub;
 		if (randoNum == 1){
 			letterSub=A;}else if (randoNum == 2){
@@ -117,30 +118,35 @@ function mainMind(){
 			playerName = window.prompt("So you didn't enter it quite right. Okay that can happen. \n"+
 				"Try again with a name, please");
 		}
-		alert("Okay "+ playerName +" you will need a hapless friend. Grab one now");
-		var prepFriend = readyFriend();
-		while (prepFriend != true){
-			alert("Try to get them this time!");
-			prepFriend = readyFriend();
+		var solo = soloGame();
+		if (!solo) {
+			alert("Okay "+ playerName +" you will need a hapless friend. Grab one now");
+			var prepFriend = readyFriend();
+			while (prepFriend != true){
+				alert("Try to get them this time!");
+				prepFriend = readyFriend();
+			}
+			nemesis = friendName();
+			while (nemesis.match(/\d+/g) != null){
+				nemesis = window.prompt("Alright try that name of your friend again without the numbers!");
+			}
+			var ruleSet1 = gameplayRules1();
+			while (ruleSet1!=true){
+				alert("Come on it isn't that hard. Please re-read");
+				ruleSet1 = gameplayRules1();
+			};
+			var ruleSet2 = gameplayRules2();
+			while (ruleSet2!=true){
+				alert("Really try to get it this time man!");
+				ruleSet2 = gameplayRules2();
+			}
+			if (ruleSet2==true){
+				alert("Alrighty then; on with the game!");
+			};
+			var winningCode = winCondition();
+		} else {
+			var winningCode = randomCode();
 		}
-		nemesis = friendName();
-		while (nemesis.match(/\d+/g) != null){
-			nemesis = window.prompt("Alright try that name of your friend again without the numbers!");
-		}
-		var ruleSet1 = gameplayRules1();
-		while (ruleSet1!=true){
-			alert("Come on it isn't that hard. Please re-read");
-			ruleSet1 = gameplayRules1();
-		};
-		var ruleSet2 = gameplayRules2();
-		while (ruleSet2!=true){
-			alert("Really try to get it this time man!");
-			ruleSet2 = gameplayRules2();
-		}
-		if (ruleSet2==true){
-			alert("Alrighty then; on with the game!");
-		};
-		var winningCode = winCondition();
 		// console.log(winningCode+" preClean");
 		//above call may be redundant. May just need below line. And or it needs to be assigned a variable?
 		winConditionClean = checkCodeCondition(winningCode);
@@ -213,9 +219,15 @@ function mainMind(){
 						" You have " +(12-t)+ " tries left!");
 				}
 			};
-			return alert("Sadly, it would appear that "+playerName+"\nhas been bested by " +nemesis+"!\n"+
-				"The code from "+nemesis+" was: "+winConditionClean+"\n"+
-				"Your previous guesses were:\n" + newPreviousGuesses);
+			if (!solo){
+				return alert("Sadly, it would appear that "+playerName+"\nhas been bested by " +nemesis+"!\n"+
+					"The code from "+nemesis+" was: "+winConditionClean+"\n"+
+					"Your previous guesses were:\n" + newPreviousGuesses);
+				} else {
+					return alert("Sadly, it would appear that "+playerName+"\nhas been bested by a computer!\n"+
+						"The winning code was: "+winConditionClean+"\n"+
+						"Your previous guesses were:\n" + newPreviousGuesses);
+				}
 
 		};
 		timeToPlay();
