@@ -19,7 +19,7 @@ var winCondition = function(){return window.prompt("Alright "+ nemesis + " what 
 	"Between A-F. -Or you'll be hearing from me again.");};
 var playersTurn = function(){return window.prompt("So, "+playerName+" what is your first guess? Remember:\n"+
 	"Exactly 4 Letters please between A-F, any order. GOOD LUCK!");};
-var playAgain = function(){return window.confirm("Would you like to play this Great Knockoff game again?");}
+// var playAgain = function(){return window.confirm("Would you like to play this Great Knockoff game again?");}
 var winConditionClean=[];
 var nemesis;
 var enteredCode;
@@ -175,23 +175,27 @@ function mainMind(){
 				// alert("this the win condition "+winConditionClean+"\nthis the play turn "+playersTurnClean);
 				if ((winConditionClean[0] == playersTurnClean[0])&&(winConditionClean[1] == playersTurnClean[1])&&
 					(winConditionClean[2] == playersTurnClean[2])&&(winConditionClean[3] == playersTurnClean[3])&& (t==1)){
-					return alert("You WON! You made it even on your first try! WOOHOO!\n"+
+					alert("You WON! You made it even on your first try! WOOHOO!\n"+
 						"The code was: "+winConditionClean+"\n Your winning guess was: "+playersTurnClean);
+					return repeat= playAgain();
 				} else if ((winConditionClean[0] == playersTurnClean[0])&&(winConditionClean[1] == playersTurnClean[1])&&
 					(winConditionClean[2] == playersTurnClean[2])&&(winConditionClean[3] == playersTurnClean[3]) && (t==12)) {
-					return alert("WHEW! ..."+playerName+" You finally won! You got it right after only "+t+" times! Yay!!\n"+
+					alert("WHEW! ..."+playerName+" You finally won! You got it right after only "+t+" times! Yay!!\n"+
 						"The code was: "+winConditionClean+"\n Your winning guess was: "+playersTurnClean+ "\n"+
 						"Your previous guesses were:\n" + newPreviousGuesses);
+					return repeat= playAgain();
 				} else if ((winConditionClean[0] == playersTurnClean[0])&&(winConditionClean[1] == playersTurnClean[1])&&
 					(winConditionClean[2] == playersTurnClean[2])&&(winConditionClean[3] == playersTurnClean[3])&&(!solo)) {
-					return alert(playerName+" YOU GOT IT!! You beat "+nemesis+" After only "+t+" tries!\n"+
+					alert(playerName+" YOU GOT IT!! You beat "+nemesis+" After only "+t+" tries!\n"+
 						"The code was: "+winConditionClean+"\n Your winning guess was: "+playersTurnClean+ "\n"+
 						"Your previous guesses were:\n" + newPreviousGuesses);
+					return repeat= playAgain();
 				} else if ((winConditionClean[0] == playersTurnClean[0])&&(winConditionClean[1] == playersTurnClean[1])&&
 					(winConditionClean[2] == playersTurnClean[2])&&(winConditionClean[3] == playersTurnClean[3])&&(solo)){
-						return alert(playerName+" YOU GOT IT!! You beat the computer! Took ya only "+t+" tries!\n"+
+						alert(playerName+" YOU GOT IT!! You beat the computer! Took ya only "+t+" tries!\n"+
 							"The code was: "+winConditionClean+"\n Your winning guess was: "+playersTurnClean+ "\n"+
 							"Your previous guesses were:\n" + newPreviousGuesses);
+						return repeat= playAgain();
 					}
 					else {
 					var inPlaceLetter=0;
@@ -228,13 +232,15 @@ function mainMind(){
 					newPreviousGuesses=previousGuesses.join("");
 					if (t==12){
 						if (!solo){
-							return alert("Sadly, it would appear that "+playerName+"\nhas been bested by " +nemesis+"!\n"+
+							alert("Sadly, it would appear that "+playerName+"\nhas been bested by " +nemesis+"!\n"+
 								"The code from "+nemesis+" was: "+winConditionClean+"\n"+
 								"Your previous guesses were:\n" + newPreviousGuesses);
+							return repeat= playAgain();
 							} else {
-								return alert("Sadly, it would appear that "+playerName+"\nhas been bested by a computer!\n"+
+								alert("Sadly, it would appear that "+playerName+"\nhas been bested by a computer!\n"+
 									"The winning code was: "+winConditionClean+"\n"+
 									"Your previous guesses were:\n" + newPreviousGuesses);
+								return repeat= playAgain();
 							}
 						}
 					playersGuess=window.prompt("Okay you didn't get it with that last guess.\n"+
@@ -250,13 +256,13 @@ function mainMind(){
 	return;
 	}
 }
-// playAgain = true;
-while (playAgain){
-	mainMind();
-	playAgain();
-	if (!playAgain){
-		alert("Well thanks for playing! Have a wonderful day!");
-	}
+var repeat = true;
+while (repeat==true){
+		console.log(repeat +" --start of loop");
+		var playAgain = function(){return window.confirm("Would you like to play this Great Knockoff game again?");};
+		mainMind();
+		console.log(repeat +" --end of loop");
 }
+alert("Well thanks for playing! Have a wonderful day!");
 // (playersTurnPluck[j]!=winConditionPluck[j]) &&
 // above was in the loop for deciding the right letter right after the if
