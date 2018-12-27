@@ -151,13 +151,15 @@ function mainMind(){
 		// console.log(winningCode+" preClean");
 		//above call may be redundant. May just need below line. And or it needs to be assigned a variable?
 			winConditionClean = checkCodeCondition(winningCode);
+			alert("Now it's time for " +playerName+ " to guess. You have up to 12 chances.");
 		} else {
 			alert("Ok then. Going it alone. Good luck!");
 			var winConditionClean = randomCode();
+			alert("Now it's time for you to guess. You have up to 12 chances.");
 
 		}
 		// console.log(winConditionClean+" postClean");
-		alert("Now it's time for " +playerName+ " to guess. You have up to 12 chances.");
+		console.log(winConditionClean + " --This is current winCondition");
 		var playersGuess = playersTurn();
 		// console.log(winConditionClean+" right after playersGuess happens")
 		//previous calls the variable out and player enters. Line below should clean it up like the other.
