@@ -3,7 +3,7 @@
 var startInfo = function(){return window.confirm("Jim, you are about to play a game of You know What!\n"+
 	"Do you accept?");};
 var contestantName = function(){return window.prompt("What is your name valiant player? -Incase you aren't Jim");};
-var soloGame = function(){return window.confirm(playerName+" would you like to play solo? If you have a friend, select 'Cancel'.")}
+var soloGame = function(){return window.confirm(playerName+", would you like to play solo? If you have a friend, select 'Cancel'.")}
 var readyFriend = function(){return window.confirm("Have you asked someone nicely?");};
 var friendName = function(){return window.prompt("What is your friend's name? Please enter now.\n"+
 	"(And PLEASE put in a regular name.)");};
@@ -147,13 +147,17 @@ function mainMind(){
 				alert("Alrighty then; on with the game!");
 			};
 			var winningCode = winCondition();
-		}
-		//TODO Right AROUND HERE TO figure out solo end STUFF
+
 		// console.log(winningCode+" preClean");
 		//above call may be redundant. May just need below line. And or it needs to be assigned a variable?
-		winConditionClean = checkCodeCondition(winningCode);
+			winConditionClean = checkCodeCondition(winningCode);
+		} else {
+			alert("Ok then. Going it alone. Good luck!");
+			var winConditionClean = randomCode();
+
+		}
 		// console.log(winConditionClean+" postClean");
-		alert("Now it's time for the " +playerName+ " to guess. You have up to 12 chances.");
+		alert("Now it's time for " +playerName+ " to guess. You have up to 12 chances.");
 		var playersGuess = playersTurn();
 		// console.log(winConditionClean+" right after playersGuess happens")
 		//previous calls the variable out and player enters. Line below should clean it up like the other.
