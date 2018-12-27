@@ -96,12 +96,12 @@ var randomCode = function(){
 				letterSub,
 				A,B,C,D,E,F;
 		if (randoNum == 1){
-			letterSub=A;}else if (randoNum == 2){
-				letterSub=B;}else if (randoNum == 3){
-					letterSub=C;}else if (randoNum == 4){
-						letterSub=D;}else if (randoNum == 5){
-							letterSub=E;}else {
-								letterSub=F;}
+			letterSub="A";}else if (randoNum == 2){
+				letterSub="B";}else if (randoNum == 3){
+					letterSub="C";}else if (randoNum == 4){
+						letterSub="D";}else if (randoNum == 5){
+							letterSub="E";}else {
+								letterSub="F";}
 		randoArray.push(letterSub);
 	}
 	return randoArray;
@@ -156,6 +156,7 @@ function mainMind(){
 			alert("Ok then. Going it alone. Good luck!");
 			var winConditionClean = randomCode();
 			alert("Now it's time for you to guess. You have up to 12 chances.");
+			console.log(winConditionClean + " --This is current winCondition in the if else");
 
 		}
 		// console.log(winConditionClean+" postClean");
@@ -183,11 +184,17 @@ function mainMind(){
 						"The code was: "+winConditionClean+"\n Your winning guess was: "+playersTurnClean+ "\n"+
 						"Your previous guesses were:\n" + newPreviousGuesses);
 				} else if ((winConditionClean[0] == playersTurnClean[0])&&(winConditionClean[1] == playersTurnClean[1])&&
-					(winConditionClean[2] == playersTurnClean[2])&&(winConditionClean[3] == playersTurnClean[3])) {
+					(winConditionClean[2] == playersTurnClean[2])&&(winConditionClean[3] == playersTurnClean[3])&&(!solo)) {
 					return alert(playerName+" YOU GOT IT!! You beat "+nemesis+" After only "+t+" tries!\n"+
 						"The code was: "+winConditionClean+"\n Your winning guess was: "+playersTurnClean+ "\n"+
 						"Your previous guesses were:\n" + newPreviousGuesses);
-				} else {
+				} else if ((winConditionClean[0] == playersTurnClean[0])&&(winConditionClean[1] == playersTurnClean[1])&&
+					(winConditionClean[2] == playersTurnClean[2])&&(winConditionClean[3] == playersTurnClean[3])&&(solo)){
+						return alert(playerName+" YOU GOT IT!! You beat the computer! Took ya only "+t+" tries!\n"+
+							"The code was: "+winConditionClean+"\n Your winning guess was: "+playersTurnClean+ "\n"+
+							"Your previous guesses were:\n" + newPreviousGuesses);
+					}
+					else {
 					var inPlaceLetter=0;
 					var rightLetter=0;
 					var winConditionPluck=winConditionClean.slice(0);
@@ -220,23 +227,25 @@ function mainMind(){
 					previousGuesses.push(t+". "+playersTurnClean+" with "+inPlaceLetter+" CP and separately "+
 						rightLetter + " CL(s) not right location.\n");
 					newPreviousGuesses=previousGuesses.join("");
+					if (t==12){
+						if (!solo){
+							return alert("Sadly, it would appear that "+playerName+"\nhas been bested by " +nemesis+"!\n"+
+								"The code from "+nemesis+" was: "+winConditionClean+"\n"+
+								"Your previous guesses were:\n" + newPreviousGuesses);
+							} else {
+								return alert("Sadly, it would appear that "+playerName+"\nhas been bested by a computer!\n"+
+									"The winning code was: "+winConditionClean+"\n"+
+									"Your previous guesses were:\n" + newPreviousGuesses);
+							}
+						}
 					playersGuess=window.prompt("Okay you didn't get it with that last guess.\n"+
 						"You have "+inPlaceLetter+" correct letter(s) in the right placement(CP)!!\n"+
 						"You got separately "+rightLetter+" letter(CL)s in the code but not in the right spot.\n"+
 						"Your previous guesses were: \n"+ newPreviousGuesses+ "  \nNow you should try again!"+
 						" You have " +(12-t)+ " tries left!");
+					console.log(t +" this is t");
 				}
-			};
-			if (!solo){
-				return alert("Sadly, it would appear that "+playerName+"\nhas been bested by " +nemesis+"!\n"+
-					"The code from "+nemesis+" was: "+winConditionClean+"\n"+
-					"Your previous guesses were:\n" + newPreviousGuesses);
-				} else {
-					return alert("Sadly, it would appear that "+playerName+"\nhas been bested by a computer!\n"+
-						"The winning code was: "+winConditionClean+"\n"+
-						"Your previous guesses were:\n" + newPreviousGuesses);
-				}
-
+			}
 		};
 		timeToPlay();
 	return;
