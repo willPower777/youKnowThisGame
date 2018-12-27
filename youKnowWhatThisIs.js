@@ -1,8 +1,8 @@
 //This is a test to see if I can make the "initial" program...
 
-var startInfo = function(){return window.confirm("Jim, you are about to play a game of You know What!\n"+
-	"Do you accept?");};
-var contestantName = function(){return window.prompt("What is your name valiant player? -Incase you aren't Jim");};
+var startInfo = function(){return window.confirm("Jim, you are about to play a game of MisterMind!\n"+
+	"Because the trademarked name was taken LoL!\n"+"Do you accept?");};
+var contestantName = function(){return window.prompt("What is your name valiant player? -Incase you aren't Jimbo");};
 var soloGame = function(){return window.confirm(playerName+", would you like to play solo? If you have a friend, select 'Cancel'.")}
 var readyFriend = function(){return window.confirm("Have you asked someone nicely?");};
 var friendName = function(){return window.prompt("What is your friend's name? Please enter now.\n"+
@@ -19,6 +19,7 @@ var winCondition = function(){return window.prompt("Alright "+ nemesis + " what 
 	"Between A-F. -Or you'll be hearing from me again.");};
 var playersTurn = function(){return window.prompt("So, "+playerName+" what is your first guess? Remember:\n"+
 	"Exactly 4 Letters please between A-F, any order. GOOD LUCK!");};
+var playAgain = function(){return window.confirm("Would you like to play this Great Knockoff game again?");}
 var winConditionClean=[];
 var nemesis;
 var enteredCode;
@@ -156,11 +157,9 @@ function mainMind(){
 			alert("Ok then. Going it alone. Good luck!");
 			var winConditionClean = randomCode();
 			alert("Now it's time for you to guess. You have up to 12 chances.");
-			console.log(winConditionClean + " --This is current winCondition in the if else");
-
 		}
 		// console.log(winConditionClean+" postClean");
-		console.log(winConditionClean + " --This is current winCondition");
+		// console.log(winConditionClean + " --This is current winCondition");
 		var playersGuess = playersTurn();
 		// console.log(winConditionClean+" right after playersGuess happens")
 		//previous calls the variable out and player enters. Line below should clean it up like the other.
@@ -251,7 +250,13 @@ function mainMind(){
 	return;
 	}
 }
-mainMind();
-
+// playAgain = true;
+while (playAgain){
+	mainMind();
+	playAgain();
+	if (!playAgain){
+		alert("Well thanks for playing! Have a wonderful day!");
+	}
+}
 // (playersTurnPluck[j]!=winConditionPluck[j]) &&
 // above was in the loop for deciding the right letter right after the if
