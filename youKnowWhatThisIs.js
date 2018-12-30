@@ -15,6 +15,14 @@ var gameplayRules2 = function(){return window.confirm("Okay so once the code is 
 	"   For instance if the winning code is (AADD) and you entered (DACC)\n   I will say 'you have 1 correct placement'(CP) and "+
 	"'separately you have 1 correct letter.'(CL)\n   Keep in mind placement will imply correct letter. Just 'letter' means not "+
 	"the right placement but a correct letter in the code. But you are on the right track.\n\n Do you understand?");};
+var gameplayRulesSolo1 = function(){return window.confirm("Alright, here's the rules. You will need to pick 4 "+
+	"letters from A-F.\n They could be all the same (DDDD) or any mix in any order. For example:\n"+
+	"(AAFF) (ABCD) (EAAE) (DCBA)\n Once you start, you will have 12 attempts to\n"+
+	"figure it out! Do you get it so far?");};
+var gameplayRulesSolo2 = function(){return window.confirm("Okay so once the game has started, I will give you feedback on your "+
+	"attempts!\n"+"  For instance if the winning code is (AADD) and you entered (DACC)\n   I will say 'you have 1 correct placement'"+
+	"(CP) and 'separately you have 1 correct letter.'(CL)\n   Keep in mind placement will imply correct letter. Just 'letter' means not "+
+	"the right placement but a correct letter in the code. But you are on the right track.\n\n Do you understand?");};
 var winCondition = function(){return window.prompt("Alright "+ nemesis + " what is your code? Please keep it to 4 letters.\n"+
 	"Between A-F. -Or you'll be hearing from me again.");};
 var playersTurn = function(){return window.prompt("So, "+playerName+" what is your first guess? Remember:\n"+
@@ -155,6 +163,16 @@ function mainMind(){
 			alert("Now it's time for " +playerName+ " to guess. You have up to 12 chances.");
 		} else {
 			alert("Ok then. Going it alone. Good luck!");
+			var soloRule1 = gameplayRulesSolo1();
+			while (soloRule1!=true){
+				alert("Ok, please re-read this stuff carefully!");
+				soloRule1 = gameplayRulesSolo1();
+			}
+			var soloRule2 = gameplayRulesSolo2();
+			while (soloRule2!=true){
+				alert("Ok, slowly this time!");
+				soloRule2 = gameplayRulesSolo2();
+			}
 			var winConditionClean = randomCode();
 			alert("Now it's time for you to guess. You have up to 12 chances.");
 		}
