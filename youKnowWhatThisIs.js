@@ -34,7 +34,7 @@ var enteredCode;
 var codeArray=[];
 var playerName;
 var previousGuesses = [];
-var newPreviousGuesses = [];
+//- var newPreviousGuesses = [];
 
 var checkCodeLength = function(enteredCode){
 			while (enteredCode.length!=4){
@@ -117,6 +117,13 @@ var randomCode = function(){
 };
 
 function mainMind(){
+	//- Tried the following 6 lines to get the newPreviousguesses array to empty
+	var newPreviousGuesses = [];
+	console.log(newPreviousGuesses +" -is list here?")
+	var emptyPrevious = function(){
+		newPreviousGuesses.length = 0;
+	};
+	emptyPrevious();
 	var answer1 = startInfo();
 	if (answer1!=true){
 		alert("Let's not triffle the weary. Please come back when you dare!");
