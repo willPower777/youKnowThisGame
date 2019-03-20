@@ -97,11 +97,14 @@ var checkCodeCondition = function(enteredCode){
 	// console.log(codeArrayReturn+" makin sure it returns something")
 	return codeArrayReturn;
 };
-//-Below will be the random code generator
+//-Below will be the random code generator the floor method used to get better
+//-random spread regular round misses numbers. Allowing for very slight increase
+//-in chance of the last digit since a "7" could result and mean more chance for
+//- F to appear.
 var randomCode = function(){
 	var randoArray = [];
 	for (i=1;i<=4;i++){
-		var randoNum = Math.round((Math.random()*5)+1),
+		var randoNum = Math.floor((Math.random()*6)+1),
 				letterSub,
 				A,B,C,D,E,F;
 		if (randoNum == 1){
